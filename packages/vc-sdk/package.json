@@ -1,0 +1,15 @@
+{
+  "name": "@flanker72/vc-sdk",
+  "version": "0.0.1",
+  "description": "VirtoCommerce SDK",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flanker72/vc-platform.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Iurii A Taranov <me@flanker72.ru>",
+  "license": "ISC"
+}
