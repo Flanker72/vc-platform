@@ -11,5 +11,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Iurii A Taranov <me@flanker72.ru>",
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "7c245bcf33e8b146b7111470f048c35cfe63e6a5"
 }

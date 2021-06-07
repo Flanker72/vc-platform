@@ -1,7 +1,15 @@
 <template>
-  <div class="vc-blade" :style="{ width: `${width}px` }" :class="{ 'vc-blade_expanded': expanded }">
+  <div
+    class="vc-blade"
+    :style="{ width: `${width}px` }"
+    :class="{ 'vc-blade_expanded': expanded }"
+  >
     <div class="vc-blade__topbar vc-flex-shrink_0">
-      <div class="vc-blade__topbar-button" v-if="expanded" @click="expanded = false">
+      <div
+        class="vc-blade__topbar-button"
+        v-if="expanded"
+        @click="expanded = false"
+      >
         <vc-icon icon="window-minimize" size="s"></vc-icon>
       </div>
       <div class="vc-blade__topbar-button" v-else @click="expanded = true">
@@ -17,10 +25,19 @@
     </div>
 
     <div class="vc-blade__header vc-flex-shrink_0">
-      <div class="vc-blade__header-icon"><vc-icon :icon="icon" size="xxl"></vc-icon></div>
+      <div class="vc-blade__header-icon">
+        <vc-icon :icon="icon" size="xxl"></vc-icon>
+      </div>
       <div class="vc-blade__header-info">
-        <div class="vc-blade__header-title" :class="{ 'vc-blade__header-title_only': !subtitle }">{{ $t(title) }}</div>
-        <div class="vc-blade__header-subtitle" v-if="subtitle">{{ $t(subtitle) }}</div>
+        <div
+          class="vc-blade__header-title"
+          :class="{ 'vc-blade__header-title_only': !subtitle }"
+        >
+          {{ $t(title) }}
+        </div>
+        <div class="vc-blade__header-subtitle" v-if="subtitle">
+          {{ $t(subtitle) }}
+        </div>
       </div>
     </div>
 
@@ -45,14 +62,29 @@
 
     <div
       v-if="searchable || filterable"
-      class="vc-blade__searchbar vc-flex vc-flex-align_center vc-fill_width vc-padding_l vc-flex-shrink_0"
+      class="
+        vc-blade__searchbar
+        vc-flex
+        vc-flex-align_center
+        vc-fill_width
+        vc-padding_l
+        vc-flex-shrink_0
+      "
     >
-      <div v-if="filterable" class="vc-blade__searchbar-filter vc-margin-right_l">
+      <div
+        v-if="filterable"
+        class="vc-blade__searchbar-filter vc-margin-right_l"
+      >
         <div
-          class="vc-blade__searchbar-filter-toggler vc-flex vc-flex-align-center"
+          class="
+            vc-blade__searchbar-filter-toggler
+            vc-flex vc-flex-align-center
+          "
           @click="filterOpened = !filterOpened"
         >
-          <div class="vc-blade__searchbar-filter-label">{{ $t("Select filter") }}</div>
+          <div class="vc-blade__searchbar-filter-label">
+            {{ $t("Select filter") }}
+          </div>
           <vc-icon
             :icon="filterOpened ? 'caret-up' : 'caret-down'"
             size="s"
@@ -60,16 +92,39 @@
           ></vc-icon>
         </div>
         <div class="vc-blade__searchbar-filter-menu" v-if="filterOpened">
-          <div class="vc-blade__searchbar-filter-menu-item" @click="filterOpened = false">Item 1</div>
-          <div class="vc-blade__searchbar-filter-menu-item" @click="filterOpened = false">Item 2</div>
-          <div class="vc-blade__searchbar-filter-menu-item" @click="filterOpened = false">Item 3</div>
+          <div
+            class="vc-blade__searchbar-filter-menu-item"
+            @click="filterOpened = false"
+          >
+            Item 1
+          </div>
+          <div
+            class="vc-blade__searchbar-filter-menu-item"
+            @click="filterOpened = false"
+          >
+            Item 2
+          </div>
+          <div
+            class="vc-blade__searchbar-filter-menu-item"
+            @click="filterOpened = false"
+          >
+            Item 3
+          </div>
         </div>
       </div>
       <div class="vc-blade__searchbar-search vc-flex-grow_1">
-        <vc-input :placeholder="$t('Search keywords')" clearable="clearable"></vc-input>
+        <vc-input
+          :placeholder="$t('Search keywords')"
+          clearable="clearable"
+        ></vc-input>
       </div>
-      <div v-if="filterable" class="vc-blade__searchbar-counter vc-margin-left_l">
-        <span class="vc-blade__searchbar-counter-label">{{ $t("Count") }}:</span>
+      <div
+        v-if="filterable"
+        class="vc-blade__searchbar-counter vc-margin-left_l"
+      >
+        <span class="vc-blade__searchbar-counter-label"
+          >{{ $t("Count") }}:</span
+        >
         <span class="vc-blade__searchbar-counter-value">5</span>
       </div>
     </div>
@@ -78,53 +133,207 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    icon: {
-      type: String
-    },
+<style lang="less">
+  .vc-blade {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--vc-blade-border-color);
+    background: #ffffff;
 
-    title: {
-      type: String
-    },
-
-    subtitle: {
-      type: String
-    },
-
-    width: {
-      type: Number | String,
-      default: 300
-    },
-
-    closable: {
-      type: Boolean,
-      default: true
-    },
-
-    toolbarItems: {
-      type: Array
-    },
-
-    breadcrumbs: {
-      type: Array
-    },
-
-    searchable: {
-      type: Boolean
-    },
-
-    filterable: {
-      type: Boolean
+    &_expanded {
+      width: 100% !important;
     }
-  },
 
-  data() {
-    return {
-      expanded: false,
-      filterOpened: false
-    };
+    &__topbar {
+      height: var(--vc-blade-topbar-height);
+      background-color: var(--vc-blade-topbar-background-color);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      &-button {
+        color: var(--vc-blade-topbar-button-color);
+        margin-right: 16px;
+        cursor: pointer;
+
+        &_disabled {
+          color: var(--vc-blade-topbar-button-disabled-color);
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    &__header {
+      height: var(--vc-blade-header-height);
+      background-color: var(--vc-blade-header-background-color);
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 16px;
+
+      &-icon {
+        color: var(--vc-blade-header-icon-color);
+        margin-right: 13px;
+      }
+
+      &-title {
+        color: var(--vc-blade-header-title-color);
+        font-size: var(--font-size-m);
+
+        &_only {
+          font-size: var(--font-size-xl);
+        }
+      }
+
+      &-subtitle {
+        color: var(--vc-blade-header-subtitle-color);
+        font-size: var(--font-size-xs);
+      }
+    }
+
+    &__toolbar {
+      height: var(--vc-blade-toolbar-height);
+      background-color: var(--vc-blade-toolbar-background-color);
+      display: flex;
+      justify-content: flex-start;
+      align-items: stretch;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0 8px;
+
+      &-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 8px;
+        color: var(--vc-blade-toolbar-item-color);
+        box-sizing: border-box;
+        cursor: pointer;
+
+        &-title {
+          font-size: var(--font-size-s);
+          white-space: nowrap;
+          margin-top: 4px;
+        }
+
+        &:hover {
+          background-color: var(--vc-blade-toolbar-item-hover-background-color);
+        }
+
+        &_disabled {
+          color: var(--vc-blade-toolbar-item-disabled-color);
+          cursor: default;
+
+          &:hover {
+            background-color: var(--vc-blade-toolbar-background-color);
+          }
+        }
+      }
+    }
+
+    &__searchbar {
+      box-sizing: border-box;
+
+      &-filter {
+        position: relative;
+
+        &-toggler {
+          cursor: pointer;
+          font-size: 14px;
+        }
+
+        &-label {
+          color: #43b0e6;
+        }
+
+        &-chevron {
+          color: #43b0e6;
+        }
+
+        &-menu {
+          position: absolute;
+          left: 0;
+          top: 120%;
+          width: 200px;
+          background: white;
+          border: 1px solid #e7ebf1;
+          border-bottom: 0;
+
+          &-item {
+            padding: 12px;
+            border-bottom: 1px solid #e7ebf1;
+            cursor: pointer;
+
+            &:hover {
+              background: #eff7fc;
+            }
+          }
+        }
+      }
+
+      &-counter {
+        font-size: 16px;
+        font-weight: var(--font-weight-medium);
+
+        &-label {
+          color: #333333;
+        }
+
+        &-value {
+          color: #43b0e6;
+        }
+      }
+    }
   }
-};
+</style>
+
+<script>
+  export default {
+    props: {
+      icon: {
+        type: String,
+      },
+
+      title: {
+        type: String,
+      },
+
+      subtitle: {
+        type: String,
+      },
+
+      width: {
+        type: Number | String,
+        default: 300,
+      },
+
+      closable: {
+        type: Boolean,
+        default: true,
+      },
+
+      toolbarItems: {
+        type: Array,
+      },
+
+      breadcrumbs: {
+        type: Array,
+      },
+
+      searchable: {
+        type: Boolean,
+      },
+
+      filterable: {
+        type: Boolean,
+      },
+    },
+
+    data() {
+      return {
+        expanded: false,
+        filterOpened: false,
+      };
+    },
+  };
 </script>

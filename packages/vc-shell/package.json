@@ -1,0 +1,27 @@
+{
+   "name": "@flanker72/vc-shell",
+   "version": "0.0.2",
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Flanker72/vc-platform.git"
+   },
+   "author": "Iurii A Taranov <me@flanker72.ru>",
+   "scripts": {
+      "dev": "nuxt",
+      "build": "nuxt build",
+      "generate": "nuxt generate",
+      "start": "nuxt start"
+   },
+   "dependencies": {
+      "@flanker72/vc-ui-kit": "^0.0.2",
+      "@nuxtjs/composition-api": "^0.24.3",
+      "core-js": "^3.10.2",
+      "nuxt": "^2.15.4",
+      "nuxt-i18n": "^6.26.0",
+      "webpack": "^4.46.0"
+   },
+   "devDependencies": {
+      "less": "^4.1.1",
+      "less-loader": "^7.3.0"
+   }
+}
